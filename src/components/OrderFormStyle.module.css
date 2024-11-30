@@ -1,0 +1,17 @@
+.Component {
+  background-color: #ce2829;
+  padding: 25rem 25rem;
+}
+
+.labelPizza {
+  font-weight: bold;
+  font-size: 2rem;
+  margin-left: 45rem;
+}
+
+.label {
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+  column-gap: 5rem;
+}
