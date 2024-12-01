@@ -3,8 +3,31 @@
   padding: 25rem 25rem;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  background-color: #ce2829;
+  margin-bottom: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  row-gap: 8rem;
+}
+
+.title {
+  margin-top: 5rem;
+}
+
+.navbar {
+  width: 38rem;
+  margin-bottom: 2rem;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+
 .pizzaform {
-  border: 1px solid black;
   width: 32%;
   margin: 0 auto;
 }
@@ -12,7 +35,7 @@
 .labelPizza {
   display: flex;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.25rem;
 }
 
 .costAreaContanier {
@@ -34,6 +57,11 @@
 
 .pizzadescription {
   margin-bottom: 2rem;
+  color: #5f5f5f;
+}
+
+.pizzadescriptionlabel {
+  line-height: 1.75rem;
 }
 
 .selectcontainer {
@@ -79,16 +107,16 @@
   margin-bottom: 2.5rem;
 }
 .ordernotelabel {
+  font-family: Barlow;
+  font-size: 1.35rem;
   font-weight: bold;
 }
 
-.additionalcheckboxes {
-  display: flex;
-  flex-direction: column;
-}
+/* .additionalcheckboxes {
+} */
 
 .checkbox {
-  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .sumoforderarea {
@@ -96,18 +124,41 @@
   justify-content: space-between;
 }
 .sumofordercost {
-  border: 1px solid red;
+  border: 2px solid gainsboro;
   border-radius: 5px;
   display: flex;
   width: 20rem;
   flex-direction: column;
   color: black;
-  margin-bottom: 1rem;
+  padding: 2rem 2rem;
 }
 
 .orderquantitylabel {
-  border: 1px solid gray;
+  border: 2px solid gainsboro;
   padding: 0 1.2rem;
   padding-top: 0.85rem;
   padding-bottom: 1.15rem;
+}
+
+.sumorderlabel {
+  font-weight: bold;
+}
+
+.electionsarea {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sumcostarea {
+  display: flex;
+  justify-content: space-between;
+}
+
+.allcostarea {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  margin-bottom: 1rem;
 }

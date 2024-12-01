@@ -14,14 +14,6 @@ import logo from "../../Assets/Iteration-1-assets/logo.svg";
 import styled from "styled-components";
 import styles from "../components/OrderFormStyle.module.css";
 
-const Styles = styled.div`
-  .custom-navbar {
-    padding: 5rem 5rem;
-    background-color: #ce2829;
-    margin-bottom: 2rem;
-  }
-`;
-
 export default function OrderForm() {
   const ekMalzemeler = [
     "Pepperoni",
@@ -43,19 +35,20 @@ export default function OrderForm() {
   document.body.className = "orderform-body";
   //Breadcrumb yapısı kullanacaksın Home/Library şeklinde yapı için NavBarda
   return (
-    <Styles>
-      <Navbar className="custom-navbar">
-        <img src={logo} />
-        <Breadcrumb>
-          <BreadcrumbItem>
-            <a href="#">Anasayfa</a>
-          </BreadcrumbItem>
-          <BreadcrumbItem>
-            <a href="#">Seçenekler</a>
-          </BreadcrumbItem>
-          <BreadcrumbItem active>Sipariş Oluştur</BreadcrumbItem>
-        </Breadcrumb>
-      </Navbar>
+    <>
+      <div className={styles.header}>
+        <Navbar className={styles.title}>
+          <img src={logo} />
+        </Navbar>
+        <div className={styles.navbar}>
+          <a href="/">Anasayfa-</a>
+          <a href="#">Seçenekler-</a>
+          <a href="#" style={{ fontWeight: "bold" }}>
+            Sipariş Oluştur
+          </a>
+        </div>
+      </div>
+
       <Form className={styles.pizzaform}>
         <Label className={styles.labelPizza}>Position Absolute Acı Pizza</Label>
         <div className={styles.costAreaContanier}>
@@ -87,7 +80,9 @@ export default function OrderForm() {
                 name="smallsize"
                 id="smallsize"
               />
-              <Label htmlFor="smallsize">Küçük</Label>
+              <Label htmlFor="smallsize" style={{ color: "#5F5F5F" }}>
+                Küçük
+              </Label>
             </div>
 
             <div>
@@ -97,7 +92,9 @@ export default function OrderForm() {
                 name="mediumsize"
                 id="mediumsize"
               />
-              <Label htmlFor="mediumsize">Orta</Label>
+              <Label style={{ color: "#5F5F5F" }} htmlFor="mediumsize">
+                Orta
+              </Label>
             </div>
 
             <div>
@@ -107,7 +104,9 @@ export default function OrderForm() {
                 name="largesize"
                 id="largesize"
               />
-              <Label htmlFor="largesize">Büyük</Label>
+              <Label style={{ color: "#5F5F5F" }} htmlFor="largesize">
+                Büyük
+              </Label>
             </div>
           </div>
 
@@ -124,27 +123,50 @@ export default function OrderForm() {
         </div>
 
         <div className={styles.additionalingredients}>
-          <Label>Ek Malzemeler</Label>
+          <Label style={{ fontWeight: "bold" }}>Ek Malzemeler</Label>
           <Label>En Fazla 10 malzeme seçebilirsiniz. 5₺</Label>
           <div className={styles.additionalcheckboxes}>
             {ekMalzemeler.map((item, index) => {
               return (
-                <span className={styles.checkbox}>
+                <span>
                   <input
                     type="checkbox"
                     name={item.toLowerCase()}
                     id={item.toLowerCase()}
+                    className={styles.checkbox}
                   />
-                  <Label htmlFor={item.toLowerCase()}>{item}</Label>
+                  <Label
+                    style={{
+                      marginRight: "1rem",
+                      fontWeight: "bold",
+                      color: "gray",
+                    }}
+                    htmlFor={item.toLowerCase()}
+                  >
+                    {item}
+                  </Label>
                 </span>
               );
             })}
           </div>
         </div>
 
+        <div className={styles.username}>
+          <Label style={{ fontWeight: "bold", fontSize: "1.25rem" }}>
+            Ad Soyad
+          </Label>
+          <Input
+            placeholder="Lütfen isminizi giriniz"
+            style={{ padding: "1rem 1rem" }}
+          />
+        </div>
+
         <div className={styles.ordernotearea}>
           <Label className={styles.ordernotelabel}>Sipariş Notu</Label>
-          <Input placeholder="Siparişine eklemek istediğin bir not var mı?" />
+          <Input
+            placeholder="Siparişine eklemek istediğin bir not var mı?"
+            style={{ padding: "1rem 1rem" }}
+          />
         </div>
         <p className={styles.borderline}></p>
 
@@ -175,23 +197,45 @@ export default function OrderForm() {
             </Button>
           </div>
 
-          <div className={styles.sumofordercost}>
-            <Label>Sipariş Toplamı</Label>
-            <div>
-              <Label>Seçimler</Label>
-              <Label>25.00₺</Label>
+          <div className={styles.allcostarea}>
+            <div className={styles.sumofordercost}>
+              <div>
+                <Label className={styles.sumorderlabel}>Sipariş Toplamı</Label>
+                <div className={styles.electionsarea}>
+                  <Label style={{ color: "gray", fontWeight: "bold" }}>
+                    Seçimler
+                  </Label>
+                  <Label style={{ color: "gray", fontWeight: "bold" }}>
+                    25.00₺
+                  </Label>
+                </div>
+                <div className={styles.sumcostarea}>
+                  <Label style={{ color: "#CE2829", fontWeight: "bold" }}>
+                    Toplam
+                  </Label>
+                  <Label style={{ color: "#CE2829", fontWeight: "bold" }}>
+                    110.50₺
+                  </Label>
+                </div>
+              </div>
             </div>
             <div>
-              <Label>Toplam</Label>
-              <Label>110.50₺</Label>
+              <Button
+                style={{
+                  backgroundColor: "#FDC913",
+                  color: "black",
+                  width: "20rem",
+                  paddingTop: "1rem",
+                  paddingBottom: "1rem",
+                }}
+                type="button"
+              >
+                Sipariş Ver
+              </Button>
             </div>
-
-            <Button style={{ backgroundColor: "#FDC913", color: "black" }}>
-              Sipariş Ver
-            </Button>
           </div>
         </div>
       </Form>
-    </Styles>
+    </>
   );
 }
