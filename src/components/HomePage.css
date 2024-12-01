@@ -1,0 +1,27 @@
+.homepage-body {
+  background-image: url("../../Assets/Iteration-1-assets/home-banner.png");
+}
+
+.logoHomepage {
+  display: block;
+  margin: 5rem auto;
+}
+
+.homePageH2 {
+  display: flex;
+  color: white;
+  font-size: 4.5rem;
+  font-weight: lighter;
+  justify-content: center;
+}
+
+.homePageButton {
+  display: block;
+  background-color: #fdc913;
+  color: black;
+  border-radius: 1.5rem;
+  padding: 0.75rem 3rem;
+  font-weight: bold;
+  font-size: 0.75rem;
+  margin: 4.5rem auto;
+}

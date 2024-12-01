@@ -1,0 +1,19 @@
+.success-body {
+  background-color: #ce2829;
+}
+
+.successh1 {
+  font-family: Barlow;
+  color: white;
+  font-size: 48px;
+  display: flex;
+  font-size: 4.5rem;
+  font-weight: lighter;
+  justify-content: center;
+}
+
+.success-logo {
+  display: block;
+  margin: 5rem auto;
+  margin-bottom: 20rem;
+}
