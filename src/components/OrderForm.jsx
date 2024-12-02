@@ -34,18 +34,20 @@ export default function OrderForm() {
 
   const errorMessages = {
     name: "En az 3 karakter girmelisin",
-    ingredient: "En az 4 adet veya en fazla 10 seçmelisin",
+    ingredient: "En az 4 adet veya en fazla 10 adet seçmelisin",
   };
 
   const [isValid, setValid] = useState(false);
   const [form, setForm] = useState(initialFormData);
+  const [ingredients, setIngredients] = useState([]);
 
   document.body.className = "orderform-body";
 
   function handleChange(event) {
-    const { name, value } = event.target;
+    const { name, value, type, checked } = event.target;
 
     setForm({ ...form, [name]: value });
+
     console.log(form);
   }
 
@@ -61,6 +63,20 @@ export default function OrderForm() {
     }
 
     setForm({ ...form, ["pizzaquantity"]: form.pizzaquantity });
+  }
+
+  function changeIngredients(event) {
+    const { name, value, type, checked } = event.target;
+    if (type === "checkbox") {
+      let result = ingredients.find((item) => item === name);
+      if (result === undefined) {
+        setIngredients([...ingredients, name]);
+      } else {
+        const index = ingredients.indexOf(name);
+        ingredients.splice(index, 1);
+      }
+      setForm({ ...form, ["ingredients"]: ingredients });
+    }
   }
 
   useEffect(() => {});
@@ -145,7 +161,11 @@ export default function OrderForm() {
 
           <div className={styles.selectpastry}>
             <Label className={styles.pastrylabel}>Hamur Seç*</Label>
-            <select name="hamur" id="Hamur Kalınlığı">
+            <select
+              name="pastrytype"
+              id="Hamur Kalınlığı"
+              onChange={handleChange}
+            >
               <option value="Hamur Kalınlığı" selected disabled hidden>
                 Hamur Kalınlığı
               </option>
@@ -167,7 +187,9 @@ export default function OrderForm() {
                     name={item.toLowerCase()}
                     id={item.toLowerCase()}
                     className={styles.checkbox}
+                    onChange={changeIngredients}
                   />
+
                   <Label
                     style={{
                       fontWeight: "bold",
@@ -181,6 +203,15 @@ export default function OrderForm() {
               );
             })}
           </div>
+          <Input
+            type="hidden"
+            valid={ingredients.length >= 4 && ingredients.length <= 10}
+            invalid={
+              (ingredients.length > 0 && ingredients.length < 4) ||
+              ingredients.length > 10
+            }
+          />
+          <FormFeedback>{errorMessages.ingredient}</FormFeedback>
         </div>
 
         <div className={styles.username}>
