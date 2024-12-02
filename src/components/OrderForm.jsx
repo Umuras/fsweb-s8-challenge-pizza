@@ -1,18 +1,8 @@
-import {
-  Label,
-  Nav,
-  Navbar,
-  NavbarBrand,
-  NavItem,
-  Form,
-  Input,
-  Button,
-  Breadcrumb,
-  BreadcrumbItem,
-} from "reactstrap";
+import { Label, Navbar, Form, Input, Button, FormFeedback } from "reactstrap";
 import logo from "../../Assets/Iteration-1-assets/logo.svg";
-import styled from "styled-components";
 import styles from "../components/OrderFormStyle.module.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function OrderForm() {
   const ekMalzemeler = [
@@ -32,8 +22,51 @@ export default function OrderForm() {
     "Sarımsak",
   ];
 
+  const initialFormData = {
+    name: "",
+    pizzasize: "",
+    ingredients: [],
+    pizzacost: 0,
+    ordernote: "",
+    pastrytype: "",
+    pizzaquantity: 0,
+  };
+
+  const errorMessages = {
+    name: "En az 3 karakter girmelisin",
+    ingredient: "En az 4 adet veya en fazla 10 seçmelisin",
+  };
+
+  const [isValid, setValid] = useState(false);
+  const [form, setForm] = useState(initialFormData);
+
   document.body.className = "orderform-body";
-  //Breadcrumb yapısı kullanacaksın Home/Library şeklinde yapı için NavBarda
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setForm({ ...form, [name]: value });
+    console.log(form);
+  }
+
+  function changePizzaQuantity(event) {
+    const { name, value } = event.target;
+
+    if (name === "pizzaquantityincrease") {
+      form.pizzaquantity++;
+    } else {
+      if (form.pizzaquantity > 0) {
+        form.pizzaquantity--;
+      }
+    }
+
+    setForm({ ...form, ["pizzaquantity"]: form.pizzaquantity });
+  }
+
+  useEffect(() => {});
+
+  function handleSubmit(event) {}
+
   return (
     <>
       <div className={styles.header}>
@@ -125,10 +158,10 @@ export default function OrderForm() {
         <div className={styles.additionalingredients}>
           <Label style={{ fontWeight: "bold" }}>Ek Malzemeler</Label>
           <Label>En Fazla 10 malzeme seçebilirsiniz. 5₺</Label>
-          <div className={styles.additionalcheckboxes}>
+          <div className={styles.alladditionalcheckboxes}>
             {ekMalzemeler.map((item, index) => {
               return (
-                <span>
+                <div className={styles.additionalcheckbox}>
                   <input
                     type="checkbox"
                     name={item.toLowerCase()}
@@ -137,7 +170,6 @@ export default function OrderForm() {
                   />
                   <Label
                     style={{
-                      marginRight: "1rem",
                       fontWeight: "bold",
                       color: "gray",
                     }}
@@ -145,7 +177,7 @@ export default function OrderForm() {
                   >
                     {item}
                   </Label>
-                </span>
+                </div>
               );
             })}
           </div>
@@ -158,7 +190,15 @@ export default function OrderForm() {
           <Input
             placeholder="Lütfen isminizi giriniz"
             style={{ padding: "1rem 1rem" }}
+            name="name"
+            id="name"
+            onChange={handleChange}
+            invalid={form.name.length > 0 && form.name.length < 3}
+            valid={form.name.length >= 3}
           />
+          {errorMessages.name && (
+            <FormFeedback>{errorMessages.name}</FormFeedback>
+          )}
         </div>
 
         <div className={styles.ordernotearea}>
@@ -166,6 +206,9 @@ export default function OrderForm() {
           <Input
             placeholder="Siparişine eklemek istediğin bir not var mı?"
             style={{ padding: "1rem 1rem" }}
+            name="ordernote"
+            id="ordernote"
+            onChange={handleChange}
           />
         </div>
         <p className={styles.borderline}></p>
@@ -180,10 +223,15 @@ export default function OrderForm() {
                 color: "black",
                 padding: "1rem 1.25rem",
               }}
+              name="pizzaquantityreduce"
+              value={form.pizzaquantity}
+              onClick={changePizzaQuantity}
             >
               -
             </Button>
-            <Label className={styles.orderquantitylabel}>1</Label>
+            <Label className={styles.orderquantitylabel}>
+              {form.pizzaquantity}
+            </Label>
             <Button
               type="button"
               className={styles.orderincreasebutton}
@@ -192,6 +240,9 @@ export default function OrderForm() {
                 color: "black",
                 padding: "1rem 1.25rem",
               }}
+              name="pizzaquantityincrease"
+              value={form.pizzaquantity}
+              onClick={changePizzaQuantity}
             >
               +
             </Button>
