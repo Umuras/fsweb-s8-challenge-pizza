@@ -2,7 +2,7 @@ import { Label, Navbar, Form, Input, Button, FormFeedback } from "reactstrap";
 import logo from "../../Assets/Iteration-1-assets/logo.svg";
 import styles from "../components/OrderFormStyle.module.css";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function OrderForm() {
   const ekMalzemeler = [
@@ -26,10 +26,11 @@ export default function OrderForm() {
     name: "",
     pizzasize: "",
     ingredients: [],
-    pizzacost: 0,
+    pizzacost: 85.5,
     ordernote: "",
     pastrytype: "",
-    pizzaquantity: 0,
+    pizzaquantity: 1,
+    sumcost: 85.5,
   };
 
   const errorMessages = {
@@ -43,13 +44,19 @@ export default function OrderForm() {
 
   document.body.className = "orderform-body";
 
+  useEffect(() => {});
+
+  function handleSubmit(event) {}
+
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
 
     setForm({ ...form, [name]: value });
-
-    console.log(form);
   }
+
+  useEffect(() => {
+    console.log(form);
+  }, [form]);
 
   function changePizzaQuantity(event) {
     const { name, value } = event.target;
@@ -61,27 +68,30 @@ export default function OrderForm() {
         form.pizzaquantity--;
       }
     }
-
-    setForm({ ...form, ["pizzaquantity"]: form.pizzaquantity });
   }
 
+  useEffect(() => {
+    setForm({ ...form, ["pizzaquantity"]: form.pizzaquantity });
+  }, [form.pizzaquantity]);
+
+  let checkedCheckbox = useRef(false);
   function changeIngredients(event) {
     const { name, value, type, checked } = event.target;
+    checkedCheckbox = checked;
     if (type === "checkbox") {
       let result = ingredients.find((item) => item === name);
       if (result === undefined) {
         setIngredients([...ingredients, name]);
       } else {
-        const index = ingredients.indexOf(name);
-        ingredients.splice(index, 1);
+        setIngredients(ingredients.filter((item) => item != name));
       }
-      setForm({ ...form, ["ingredients"]: ingredients });
     }
   }
 
-  useEffect(() => {});
-
-  function handleSubmit(event) {}
+  useEffect(() => {
+    form.sumcost = form.pizzacost + ingredients.length * 5;
+    setForm({ ...form, ["ingredients"]: ingredients });
+  }, [ingredients]);
 
   return (
     <>
@@ -126,10 +136,12 @@ export default function OrderForm() {
               <Input
                 className={styles.pizzasizeinput}
                 type="radio"
-                name="smallsize"
-                id="smallsize"
+                name="pizzasize"
+                id="smallsizeradio"
+                value={"Küçük"}
+                onChange={handleChange}
               />
-              <Label htmlFor="smallsize" style={{ color: "#5F5F5F" }}>
+              <Label htmlFor="smallsizeradio" style={{ color: "#5F5F5F" }}>
                 Küçük
               </Label>
             </div>
@@ -138,10 +150,12 @@ export default function OrderForm() {
               <Input
                 className={styles.pizzasizeinput}
                 type="radio"
-                name="mediumsize"
-                id="mediumsize"
+                name="pizzasize"
+                id="mediumsizeradio"
+                value={"Orta"}
+                onChange={handleChange}
               />
-              <Label style={{ color: "#5F5F5F" }} htmlFor="mediumsize">
+              <Label style={{ color: "#5F5F5F" }} htmlFor="mediumsizeradio">
                 Orta
               </Label>
             </div>
@@ -150,10 +164,12 @@ export default function OrderForm() {
               <Input
                 className={styles.pizzasizeinput}
                 type="radio"
-                name="largesize"
-                id="largesize"
+                name="pizzasize"
+                id="largesizeradio"
+                value={"Büyük"}
+                onChange={handleChange}
               />
-              <Label style={{ color: "#5F5F5F" }} htmlFor="largesize">
+              <Label style={{ color: "#5F5F5F" }} htmlFor="largesizeradio">
                 Büyük
               </Label>
             </div>
@@ -296,7 +312,7 @@ export default function OrderForm() {
                     Toplam
                   </Label>
                   <Label style={{ color: "#CE2829", fontWeight: "bold" }}>
-                    110.50₺
+                    {form.sumcost + "₺"}
                   </Label>
                 </div>
               </div>
