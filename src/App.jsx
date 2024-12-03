@@ -2,10 +2,10 @@ import { useState } from "react";
 import "./App.css";
 import { Route } from "react-router-dom/cjs/react-router-dom";
 import { Switch } from "react-router-dom/cjs/react-router-dom";
-import OrderForm from "./components/OrderForm";
+import OrderForm from "./pages/OrderForm";
 import "bootstrap/dist/css/bootstrap.min.css";
-import HomePage from "./components/HomePage";
-import Success from "./components/Success";
+import HomePage from "./pages/HomePage";
+import Success from "./pages/Success";
 
 function App() {
   return (
