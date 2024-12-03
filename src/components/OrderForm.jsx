@@ -168,7 +168,7 @@ export default function OrderForm() {
 
           <NavLink
             className={
-              window.location.href === "http://localhost:5174/orderform"
+              window.location.href.includes("/orderform")
                 ? styles.activepage
                 : styles.navlink
             }
@@ -213,6 +213,7 @@ export default function OrderForm() {
                 id="smallsizeradio"
                 value={"Küçük"}
                 onChange={handleChange}
+                data-cy="smallsize-radio"
               />
               <LabelLightGray htmlFor="smallsizeradio">Küçük</LabelLightGray>
             </div>
@@ -225,6 +226,7 @@ export default function OrderForm() {
                 id="mediumsizeradio"
                 value={"Orta"}
                 onChange={handleChange}
+                data-cy="mediumsize-radio"
               />
               <LabelLightGray htmlFor="mediumsizeradio">Orta</LabelLightGray>
             </div>
@@ -237,6 +239,7 @@ export default function OrderForm() {
                 id="largesizeradio"
                 value={"Büyük"}
                 onChange={handleChange}
+                data-cy="largesize-radio"
               />
               <LabelLightGray htmlFor="largesizeradio">Büyük</LabelLightGray>
             </div>
@@ -248,12 +251,17 @@ export default function OrderForm() {
               name="pastrytype"
               id="Hamur Kalınlığı"
               onChange={handleChange}
+              data-cy="pastry-select"
             >
               <option value="Hamur Kalınlığı" selected disabled hidden>
                 Hamur Kalınlığı
               </option>
-              <option value="kalınhamur">Kalın Hamur</option>
-              <option value="incehamur">Ince Hamur</option>
+              <option value="kalınhamur" data-cy="thickcrust-option">
+                Kalın Hamur
+              </option>
+              <option value="incehamur" data-cy="thincrust-option">
+                Ince Hamur
+              </option>
             </select>
           </div>
         </div>
@@ -271,6 +279,7 @@ export default function OrderForm() {
                     id={item.toLowerCase()}
                     className={styles.checkbox}
                     onChange={changeIngredients}
+                    data-cy={"ingredient-checkbox" + index}
                   />
 
                   <Label
@@ -291,7 +300,9 @@ export default function OrderForm() {
               ingredients.length > 10
             }
           />
-          <FormFeedback>{errorMessages.ingredient}</FormFeedback>
+          {errorMessages.ingredient && (
+            <FormFeedback>{errorMessages.ingredient}</FormFeedback>
+          )}
         </div>
 
         <div className={styles.username}>
@@ -303,6 +314,7 @@ export default function OrderForm() {
             onChange={handleChange}
             invalid={form.name.length > 0 && form.name.length < 3}
             valid={form.name.length >= 3}
+            data-cy="name-input"
           />
           {errorMessages.name && (
             <FormFeedback>{errorMessages.name}</FormFeedback>
@@ -316,6 +328,7 @@ export default function OrderForm() {
             name="ordernote"
             id="ordernote"
             onChange={handleChange}
+            data-cy="ordernote-input"
           />
         </div>
         <p className={styles.borderline}></p>
@@ -360,7 +373,9 @@ export default function OrderForm() {
               </div>
             </div>
             <div>
-              <OrderButton disabled={!isValid}>Sipariş Ver</OrderButton>
+              <OrderButton disabled={!isValid} data-cy="order-button">
+                Sipariş Ver
+              </OrderButton>
             </div>
           </div>
         </div>
