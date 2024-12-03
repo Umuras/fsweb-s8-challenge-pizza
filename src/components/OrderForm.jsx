@@ -2,7 +2,8 @@ import { Label, Navbar, Form, Input, Button, FormFeedback } from "reactstrap";
 import logo from "../../Assets/Iteration-1-assets/logo.svg";
 import styles from "../components/OrderFormStyle.module.css";
 import axios from "axios";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 export default function OrderForm() {
   const ekMalzemeler = [
@@ -35,18 +36,16 @@ export default function OrderForm() {
 
   const errorMessages = {
     name: "En az 3 karakter girmelisin",
-    ingredient: "En az 4 adet veya en fazla 10 adet seçmelisin",
+    ingredient: "En az 4 adet veya en fazla 10 adet malzeme seçmelisin",
   };
 
-  const [isValid, setValid] = useState(false);
+  const [isValid, setIsValid] = useState(false);
   const [form, setForm] = useState(initialFormData);
   const [ingredients, setIngredients] = useState([]);
 
+  let history = useHistory();
+
   document.body.className = "orderform-body";
-
-  useEffect(() => {});
-
-  function handleSubmit(event) {}
 
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
@@ -55,8 +54,33 @@ export default function OrderForm() {
   }
 
   useEffect(() => {
-    console.log(form);
+    if (
+      form.name.length >= 3 &&
+      form.pastrytype &&
+      form.pizzasize &&
+      form.ingredients.length >= 4
+    ) {
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
   }, [form]);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    if (isValid) {
+      axios
+        .post("https://reqres.in/api/pizza", form)
+        .then((response) => {
+          console.log(response.data);
+          history.push("/success");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
 
   function changePizzaQuantity(event) {
     const { name, value } = event.target;
@@ -68,28 +92,25 @@ export default function OrderForm() {
         form.pizzaquantity--;
       }
     }
+    form.sumcost = ingredients.length * 5 + form.pizzacost * form.pizzaquantity;
+    setForm({ ...form, ["pizzaquantity"]: form.pizzaquantity });
   }
 
-  useEffect(() => {
-    setForm({ ...form, ["pizzaquantity"]: form.pizzaquantity });
-  }, [form.pizzaquantity]);
-
-  let checkedCheckbox = useRef(false);
   function changeIngredients(event) {
     const { name, value, type, checked } = event.target;
-    checkedCheckbox = checked;
     if (type === "checkbox") {
       let result = ingredients.find((item) => item === name);
       if (result === undefined) {
         setIngredients([...ingredients, name]);
+        form.sumcost = form.sumcost + 5;
       } else {
         setIngredients(ingredients.filter((item) => item != name));
+        form.sumcost = form.sumcost - 5;
       }
     }
   }
 
   useEffect(() => {
-    form.sumcost = form.pizzacost + ingredients.length * 5;
     setForm({ ...form, ["ingredients"]: ingredients });
   }, [ingredients]);
 
@@ -108,7 +129,7 @@ export default function OrderForm() {
         </div>
       </div>
 
-      <Form className={styles.pizzaform}>
+      <Form className={styles.pizzaform} onSubmit={handleSubmit}>
         <Label className={styles.labelPizza}>Position Absolute Acı Pizza</Label>
         <div className={styles.costAreaContanier}>
           <Label className={styles.costPizzaLabel}>85.50₺</Label>
@@ -223,7 +244,7 @@ export default function OrderForm() {
             type="hidden"
             valid={ingredients.length >= 4 && ingredients.length <= 10}
             invalid={
-              (ingredients.length > 0 && ingredients.length < 4) ||
+              (ingredients.length >= 0 && ingredients.length < 4) ||
               ingredients.length > 10
             }
           />
@@ -304,7 +325,7 @@ export default function OrderForm() {
                     Seçimler
                   </Label>
                   <Label style={{ color: "gray", fontWeight: "bold" }}>
-                    25.00₺
+                    {form.ingredients.length * 5 + "₺"}
                   </Label>
                 </div>
                 <div className={styles.sumcostarea}>
@@ -326,7 +347,7 @@ export default function OrderForm() {
                   paddingTop: "1rem",
                   paddingBottom: "1rem",
                 }}
-                type="button"
+                disabled={!isValid}
               >
                 Sipariş Ver
               </Button>

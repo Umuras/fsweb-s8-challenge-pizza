@@ -97,14 +97,13 @@
 .alladditionalcheckboxes {
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
   justify-content: space-between;
   row-gap: 1.25rem;
-  column-gap: 2rem;
 }
 
 .additionalcheckbox {
   display: block;
+  width: 32%;
 }
 
 .ordernotearea {
