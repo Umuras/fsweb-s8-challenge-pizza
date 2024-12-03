@@ -18,8 +18,8 @@ export default function HomePage() {
         <img src={logo} className="logoHomepage" />
       </header>
       <section className="homeinfo">
-        <h2 className="homePageH2">KOD ACIKTIRIR</h2>
-        <h2 className="homePageH2">PİZZA, DOYURUR</h2>
+        <h1 className="homePageH1">KOD ACIKTIRIR</h1>
+        <h1 className="homePageH1">PİZZA, DOYURUR</h1>
         <Button type="button" className="homePageButton" onClick={handleChange}>
           ACIKTIM
         </Button>

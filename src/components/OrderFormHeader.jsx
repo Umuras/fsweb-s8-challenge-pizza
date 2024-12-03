@@ -5,10 +5,10 @@ import styles from "./OrderFormStyle.module.css";
 
 export default function OrderFormHeader() {
   return (
-    <div className={styles.header}>
-      <Navbar className={styles.title}>
+    <section className={styles.header}>
+      <div className={styles.title}>
         <img src={logo} />
-      </Navbar>
+      </div>
 
       <div className={styles.navbar}>
         <NavLink className={styles.navlink} to="/">
@@ -29,6 +29,6 @@ export default function OrderFormHeader() {
           Sipariş Oluştur
         </NavLink>
       </div>
-    </div>
+    </section>
   );
 }
