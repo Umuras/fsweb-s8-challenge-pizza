@@ -15,11 +15,13 @@
 .navbar {
   width: 38rem;
   margin-bottom: 2rem;
+  display: flex;
+  color: white;
 }
 
-.navbar a {
-  text-decoration: none;
+.navlink {
   color: white;
+  text-decoration: none;
 }
 
 .pizzaform {
@@ -106,6 +108,11 @@
   width: 32%;
 }
 
+.checboxlabel {
+  font-weight: bold;
+  color: gray;
+}
+
 .ordernotearea {
   margin-bottom: 2.5rem;
 }
@@ -122,6 +129,11 @@
 
 .checkbox {
   margin-right: 1rem;
+}
+
+.usernamelabel {
+  font-weight: bold;
+  font-size: 1.25rem;
 }
 
 .sumoforderarea {
@@ -166,4 +178,16 @@
 
 .username {
   margin-bottom: 1rem;
+}
+
+.orderreducebutton {
+  background-color: #fdc913;
+  color: black;
+  padding: 1rem 1.25rem;
+}
+
+.activepage {
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
 }
