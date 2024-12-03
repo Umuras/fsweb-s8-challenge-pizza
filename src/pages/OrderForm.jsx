@@ -1,10 +1,15 @@
-import { Label, Navbar, Form, Input, Button, FormFeedback } from "reactstrap";
-import logo from "../../Assets/Iteration-1-assets/logo.svg";
+import { Label, Form } from "reactstrap";
 import styles from "../components/OrderFormStyle.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useHistory, Link, NavLink } from "react-router-dom";
-import styled from "styled-components";
+import { useHistory } from "react-router-dom";
+import OrderFormHeader from "../components/OrderFormHeader";
+import PizzaCostArea from "../components/PizzaCostArea";
+import PizzaDescription from "../components/PizzaDescription";
+import PizzaSizePastrySelectionArea from "../components/PizzaSizePastrySelectionArea";
+import PizzaAdditionalIngredients from "../components/PizzaAdditionalIngredients";
+import PizzaInputArea from "../components/PizzaInputArea";
+import PizzaSumOfOrder from "../components/PizzaSumOfOrder";
 
 const ekMalzemeler = [
   "Pepperoni",
@@ -38,42 +43,6 @@ const errorMessages = {
   name: "En az 3 karakter girmelisin",
   ingredient: "En az 4 adet veya en fazla 10 adet malzeme seçmelisin",
 };
-
-const LabelLightGray = styled(Label)`
-  color: #5f5f5f;
-`;
-
-const LabelBold = styled(Label)`
-  font-weight: bold;
-`;
-
-const ExpandInput = styled(Input)`
-  padding: 1rem 1rem;
-`;
-
-const OrderQuantityButton = styled(Button)`
-  background-color: #fdc913;
-  color: black;
-  padding: 1rem 1.25rem;
-`;
-
-const LabelBoldGray = styled(Label)`
-  font-weight: bold;
-  color: gray;
-`;
-
-const LabelBoldRed = styled(Label)`
-  font-weight: bold;
-  color: #ce2829;
-`;
-
-const OrderButton = styled(Button)`
-  background-color: #fdc913;
-  color: black;
-  width: 20rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-`;
 
 export default function OrderForm() {
   const [isValid, setIsValid] = useState(false);
@@ -153,232 +122,36 @@ export default function OrderForm() {
 
   return (
     <>
-      <div className={styles.header}>
-        <Navbar className={styles.title}>
-          <img src={logo} />
-        </Navbar>
-
-        <div className={styles.navbar}>
-          <NavLink className={styles.navlink} to="/">
-            Anasayfa-
-          </NavLink>
-          <NavLink className={styles.navlink} to="/options">
-            Seçenekler-
-          </NavLink>
-
-          <NavLink
-            className={
-              window.location.href.includes("/orderform")
-                ? styles.activepage
-                : styles.navlink
-            }
-            to="/orderform"
-          >
-            Sipariş Oluştur
-          </NavLink>
-        </div>
-      </div>
+      <OrderFormHeader />
 
       <Form className={styles.pizzaform} onSubmit={handleSubmit}>
         <Label className={styles.labelPizza}>Position Absolute Acı Pizza</Label>
-        <div className={styles.costAreaContanier}>
-          <Label className={styles.costPizzaLabel}>
-            {form.pizzacost + "0₺"}
-          </Label>
-          <Label className={styles.score}>4.9</Label>
-          <Label className={styles.stock}>(200)</Label>
-        </div>
+        <PizzaCostArea form={form} />
 
-        <div className={styles.pizzadescription}>
-          <Label className={styles.pizzadescriptionlabel}>
-            Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı
-            pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli
-            diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun
-            ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle
-            yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan Italyan
-            kökenli lezzetli bir yemektir..Küçük bir pizzaya bazen pizzetta
-            denir.
-          </Label>
-        </div>
+        <PizzaDescription />
 
-        <div className={styles.selectcontainer}>
-          <div className={styles.sizeArea}>
-            <Label className={styles.selectPizzaSize}>Boyut Seç*</Label>
+        <PizzaSizePastrySelectionArea handleChange={handleChange} />
 
-            <div>
-              <Input
-                className={styles.pizzasizeinput}
-                type="radio"
-                name="pizzasize"
-                id="smallsizeradio"
-                value={"Küçük"}
-                onChange={handleChange}
-                data-cy="smallsize-radio"
-              />
-              <LabelLightGray htmlFor="smallsizeradio">Küçük</LabelLightGray>
-            </div>
+        <PizzaAdditionalIngredients
+          errorMessages={errorMessages}
+          ingredients={ingredients}
+          changeIngredients={changeIngredients}
+          ekMalzemeler={ekMalzemeler}
+        />
 
-            <div>
-              <Input
-                className={styles.pizzasizeinput}
-                type="radio"
-                name="pizzasize"
-                id="mediumsizeradio"
-                value={"Orta"}
-                onChange={handleChange}
-                data-cy="mediumsize-radio"
-              />
-              <LabelLightGray htmlFor="mediumsizeradio">Orta</LabelLightGray>
-            </div>
+        <PizzaInputArea
+          form={form}
+          handleChange={handleChange}
+          errorMessages={errorMessages}
+        />
 
-            <div>
-              <Input
-                className={styles.pizzasizeinput}
-                type="radio"
-                name="pizzasize"
-                id="largesizeradio"
-                value={"Büyük"}
-                onChange={handleChange}
-                data-cy="largesize-radio"
-              />
-              <LabelLightGray htmlFor="largesizeradio">Büyük</LabelLightGray>
-            </div>
-          </div>
-
-          <div className={styles.selectpastry}>
-            <Label className={styles.pastrylabel}>Hamur Seç*</Label>
-            <select
-              name="pastrytype"
-              id="Hamur Kalınlığı"
-              onChange={handleChange}
-              data-cy="pastry-select"
-            >
-              <option value="Hamur Kalınlığı" selected disabled hidden>
-                Hamur Kalınlığı
-              </option>
-              <option value="kalınhamur" data-cy="thickcrust-option">
-                Kalın Hamur
-              </option>
-              <option value="incehamur" data-cy="thincrust-option">
-                Ince Hamur
-              </option>
-            </select>
-          </div>
-        </div>
-
-        <div className={styles.additionalingredients}>
-          <LabelBold>Ek Malzemeler</LabelBold>
-          <Label>En Fazla 10 malzeme seçebilirsiniz. 5₺</Label>
-          <div className={styles.alladditionalcheckboxes}>
-            {ekMalzemeler.map((item, index) => {
-              return (
-                <div className={styles.additionalcheckbox} key={index}>
-                  <input
-                    type="checkbox"
-                    name={item.toLowerCase()}
-                    id={item.toLowerCase()}
-                    className={styles.checkbox}
-                    onChange={changeIngredients}
-                    data-cy={"ingredient-checkbox" + index}
-                  />
-
-                  <Label
-                    className={styles.checboxlabel}
-                    htmlFor={item.toLowerCase()}
-                  >
-                    {item}
-                  </Label>
-                </div>
-              );
-            })}
-          </div>
-          <Input
-            type="hidden"
-            valid={ingredients.length >= 4 && ingredients.length <= 10}
-            invalid={
-              (ingredients.length >= 0 && ingredients.length < 4) ||
-              ingredients.length > 10
-            }
-          />
-          {errorMessages.ingredient && (
-            <FormFeedback>{errorMessages.ingredient}</FormFeedback>
-          )}
-        </div>
-
-        <div className={styles.username}>
-          <Label className={styles.usernamelabel}>Ad Soyad</Label>
-          <ExpandInput
-            placeholder="Lütfen isminizi giriniz"
-            name="name"
-            id="name"
-            onChange={handleChange}
-            invalid={form.name.length > 0 && form.name.length < 3}
-            valid={form.name.length >= 3}
-            data-cy="name-input"
-          />
-          {errorMessages.name && (
-            <FormFeedback>{errorMessages.name}</FormFeedback>
-          )}
-        </div>
-
-        <div className={styles.ordernotearea}>
-          <Label className={styles.ordernotelabel}>Sipariş Notu</Label>
-          <ExpandInput
-            placeholder="Siparişine eklemek istediğin bir not var mı?"
-            name="ordernote"
-            id="ordernote"
-            onChange={handleChange}
-            data-cy="ordernote-input"
-          />
-        </div>
         <p className={styles.borderline}></p>
 
-        <div className={styles.sumoforderarea}>
-          <div className={styles.orderquantityarea}>
-            <OrderQuantityButton
-              type="button"
-              name="pizzaquantityreduce"
-              value={form.pizzaquantity}
-              onClick={changePizzaQuantity}
-            >
-              -
-            </OrderQuantityButton>
-            <Label className={styles.orderquantitylabel}>
-              {form.pizzaquantity}
-            </Label>
-            <OrderQuantityButton
-              type="button"
-              name="pizzaquantityincrease"
-              value={form.pizzaquantity}
-              onClick={changePizzaQuantity}
-            >
-              +
-            </OrderQuantityButton>
-          </div>
-
-          <div className={styles.allcostarea}>
-            <div className={styles.sumofordercost}>
-              <div>
-                <Label className={styles.sumorderlabel}>Sipariş Toplamı</Label>
-                <div className={styles.electionsarea}>
-                  <LabelBoldGray>Seçimler</LabelBoldGray>
-                  <LabelBoldGray>
-                    {form.ingredients.length * 5 + "₺"}
-                  </LabelBoldGray>
-                </div>
-                <div className={styles.sumcostarea}>
-                  <LabelBoldRed>Toplam</LabelBoldRed>
-                  <LabelBoldRed>{form.sumcost + "₺"}</LabelBoldRed>
-                </div>
-              </div>
-            </div>
-            <div>
-              <OrderButton disabled={!isValid} data-cy="order-button">
-                Sipariş Ver
-              </OrderButton>
-            </div>
-          </div>
-        </div>
+        <PizzaSumOfOrder
+          form={form}
+          changePizzaQuantity={changePizzaQuantity}
+          isValid={isValid}
+        />
       </Form>
     </>
   );

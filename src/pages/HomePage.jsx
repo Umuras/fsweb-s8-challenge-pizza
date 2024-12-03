@@ -1,4 +1,3 @@
-import HomeBanner from "../../Assets/Iteration-1-assets/home-banner.png";
 import logo from "../../Assets/Iteration-1-assets/logo.svg";
 import { Button } from "reactstrap";
 import "../components/HomePage.css";
