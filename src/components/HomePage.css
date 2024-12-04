@@ -1,13 +1,21 @@
-.homepage-body {
-  background-image: url("../../Assets/Iteration-1-assets/home-banner.png");
+.firstcontainer {
+  position: relative;
+}
+
+.homeinfo {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  right: 1rem;
 }
 
 .logoHomepage {
   display: block;
-  margin: 5rem auto;
+  margin: 3rem auto;
 }
 
 .homePageH1 {
+  font-family: "Roboto Condensed", serif;
   display: flex;
   color: white;
   font-size: 4.5rem;
@@ -23,5 +31,19 @@
   padding: 0.75rem 3rem;
   font-weight: bold;
   font-size: 0.75rem;
-  margin: 4.5rem auto;
+  margin: 1rem auto;
+}
+
+.homeinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.OrderFoodCardContainer {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  margin-left: 20rem;
+  margin-right: 17rem;
 }
