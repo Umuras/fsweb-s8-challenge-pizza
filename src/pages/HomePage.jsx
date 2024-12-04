@@ -12,10 +12,19 @@ import "../components/HomePage.css";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import HomeBackground from "../../Assets/Iteration-1-assets/home-banner.png";
-import { foodItems } from "../dummyData";
+import {
+  foodItems,
+  foodItemsNew,
+  foodCardInfos,
+  helpInfos,
+  instaPhotos,
+} from "../dummyData";
 import FoodCardPizza from "../../Assets/Iteration-2-aseets/cta/kart-1.png";
 import FoodCardHamburger from "../../Assets/Iteration-2-aseets/cta/kart-2.png";
 import FoodCardMessenger from "../../Assets/Iteration-2-aseets/cta/kart-3.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-regular-svg-icons";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 const OpportunityLabel = styled(Label)`
   font-family: "Satisfy", serif;
@@ -39,7 +48,7 @@ const FoodMenuArea = styled.nav`
   justify-content: center;
   column-gap: 6.5rem;
   margin-top: 2rem;
-  margin-bottom: 7.5rem;
+  margin-bottom: 5rem;
 `;
 
 const PizzaCard = styled(Card)`
@@ -78,6 +87,7 @@ const OrderButton = styled(Button)`
   color: red;
   padding: 1rem 2rem 1rem 2rem;
   font-weight: bold;
+  border: none;
 `;
 
 const HamburgerCard = styled(Card)`
@@ -91,8 +101,7 @@ const HamburgerCardImg = styled(CardImg)`
 const HamburgerCardTitleLabel = styled(CardTitle)`
   font-size: 2rem;
   margin-bottom: 1rem;
-  font-family: "Quattrocento", serif;
-  font-weight: bold;
+  font-family: "Barlow", serif;
 `;
 
 const FoodMessengerCardArea = styled(Card)`
@@ -107,8 +116,8 @@ const FoodCardMessengerImg = styled(CardImg)`
 
 const FoodCardMessengerTitleLabel = styled(CardTitle)`
   font-size: 2rem;
-  margin-bottom: 1rem;
-  font-family: "Quattrocento", serif;
+  margin: 0 0 0 0;
+  font-family: "Roboto Condensed", serif;
   font-weight: bold;
 `;
 
@@ -116,6 +125,140 @@ const WrapperCard = styled(Card)`
   display: flex;
   justify-content: space-between;
   border: 0;
+`;
+
+const MostOrderedLabel = styled(Label)`
+  font-family: "Satisfy", serif;
+  color: #ce2829;
+  font-size: 2rem;
+  margin: 0 auto;
+`;
+
+const FlavorsLabel = styled(Label)`
+  font-family: "Barlow", serif;
+  font-weight: bold;
+  font-size: 3rem;
+  margin: 0 auto;
+`;
+
+const SubFoodMenuArea = styled.nav`
+  display: flex;
+  justify-content: center;
+  column-gap: 2rem;
+  margin-left: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+`;
+
+const FoodButton = styled(Button)`
+  border-radius: 2rem;
+  background-color: aliceblue;
+  color: black;
+  border: none;
+  padding: 1.25rem 3rem 1.25rem 3rem;
+`;
+
+const FoodCardNameLabel = styled(Label)`
+  margin: 0 0 0 0;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-family: "Barlow", serif;
+  font-size: 1.5rem;
+`;
+
+const FoodCardSpecsLabel = styled(Label)`
+  margin: 0 0 0 0;
+  color: #5f5f5f;
+  font-weight: bold;
+`;
+
+const FoodCardCostLabel = styled(Label)`
+  margin: 0 0 0 0;
+  font-weight: bold;
+  font-family: "Barlow", serif;
+  font-size: 1.5rem;
+`;
+
+const FoodSpecsLabelContainer = styled.div`
+  display: flex;
+  width: 95%;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const MiddleArea = styled.section`
+  background-color: #faf7f2;
+  margin-bottom: 5rem;
+`;
+
+const TechnologicFoodsContainer = styled.div`
+  color: white;
+  display: flex;
+  border: 4px solid yellow;
+  width: 58%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
+
+const InfoMenuContainer = styled.div`
+  display: flex;
+  border: 4px solid red;
+  width: 40%;
+  height: 20rem;
+  margin-top: 5rem;
+`;
+
+const MenuTitleLabel = styled.p`
+  margin-bottom: 2rem;
+`;
+
+const MenuInfoContainer = styled.div`
+  color: white;
+`;
+
+const AllInfoAreaContainer = styled.section`
+  width: 69.5%;
+  margin-left: 20rem;
+  height: 20rem;
+  display: flex;
+  justify-content: space-between;
+  border: 5px solid green;
+`;
+
+const BorderLine = styled.p`
+  margin-top: 5rem;
+  border: 1px solid white;
+`;
+
+const InstaContainer = styled.div`
+  border: 4px solid yellow;
+  width: 25.47%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 5rem;
+  height: 32vh;
+`;
+
+const InstaLabel = styled.p`
+  font-weight: bold;
+  font-family: "Barlow", serif;
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 2.25rem;
+`;
+
+const InstaImg = styled.img`
+  flex: 1;
+`;
+
+const InstaImgContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: flex-end;
 `;
 
 export default function HomePage() {
@@ -159,48 +302,145 @@ export default function HomePage() {
         })}
       </FoodMenuArea>
 
-      <section className="OrderFoodCardContainer">
-        <PizzaCard inverse>
-          <PizzaCardImg alt="Card image cap" src={FoodCardPizza} />
-          <CardImageContentArea>
-            <PizzaCardTitleLabel tag="h1">Özel</PizzaCardTitleLabel>
-            <PizzaCardTitleLabel tag="h1">Lezzetus</PizzaCardTitleLabel>
-            <PizzaCardText>Position:Absolute Acı Burger</PizzaCardText>
-            <OrderButton>SİPARİŞ VER</OrderButton>
-          </CardImageContentArea>
-        </PizzaCard>
-
-        <WrapperCard>
-          <HamburgerCard inverse>
-            <HamburgerCardImg alt="Card image cap" src={FoodCardHamburger} />
+      <MiddleArea>
+        <section className="OrderFoodCardContainer">
+          <PizzaCard inverse>
+            <PizzaCardImg alt="Card image cap" src={FoodCardPizza} />
             <CardImageContentArea>
-              <HamburgerCardTitleLabel tag="h1">
-                Hackathlon
-              </HamburgerCardTitleLabel>
-              <HamburgerCardTitleLabel tag="h1">
-                Burger Menü
-              </HamburgerCardTitleLabel>
+              <PizzaCardTitleLabel tag="h1">Özel</PizzaCardTitleLabel>
+              <PizzaCardTitleLabel tag="h1">Lezzetus</PizzaCardTitleLabel>
+              <PizzaCardText>Position:Absolute Acı Burger</PizzaCardText>
               <OrderButton>SİPARİŞ VER</OrderButton>
             </CardImageContentArea>
-          </HamburgerCard>
+          </PizzaCard>
 
-          <FoodMessengerCardArea>
-            <FoodCardMessengerImg
-              alt="Card image cap"
-              src={FoodCardMessenger}
-            />
-            <CardImageContentArea>
-              <FoodCardMessengerTitleLabel tag="h1">
-                Çoook hızlı
-              </FoodCardMessengerTitleLabel>
-              <FoodCardMessengerTitleLabel tag="h1">
-                npm gibi kurye
-              </FoodCardMessengerTitleLabel>
-              <OrderButton>SİPARİŞ VER</OrderButton>
-            </CardImageContentArea>
-          </FoodMessengerCardArea>
-        </WrapperCard>
-      </section>
+          <WrapperCard>
+            <HamburgerCard inverse>
+              <HamburgerCardImg alt="Card image cap" src={FoodCardHamburger} />
+              <CardImageContentArea>
+                <div className="hamburgercardlabelcontainer">
+                  <HamburgerCardTitleLabel tag="h1">
+                    Hackathlon
+                  </HamburgerCardTitleLabel>
+                  <HamburgerCardTitleLabel tag="h1">
+                    Burger Menü
+                  </HamburgerCardTitleLabel>
+                </div>
+
+                <OrderButton>SİPARİŞ VER</OrderButton>
+              </CardImageContentArea>
+            </HamburgerCard>
+
+            <FoodMessengerCardArea>
+              <FoodCardMessengerImg
+                alt="Card image cap"
+                src={FoodCardMessenger}
+              />
+              <CardImageContentArea>
+                <div className="foodmessengercardlabelcontainer">
+                  <FoodCardMessengerTitleLabel tag="h1">
+                    <Label className="npmCardLabel">Çoook</Label> hızlı{" "}
+                  </FoodCardMessengerTitleLabel>
+                  <FoodCardMessengerTitleLabel tag="h1">
+                    npm gibi kurye
+                  </FoodCardMessengerTitleLabel>
+                </div>
+                <OrderButton>SİPARİŞ VER</OrderButton>
+              </CardImageContentArea>
+            </FoodMessengerCardArea>
+          </WrapperCard>
+        </section>
+
+        <section className="choosingfoodlabelarea">
+          <MostOrderedLabel>en çok paketlenen menüler</MostOrderedLabel>
+          <FlavorsLabel>Acıktıran Kodlara Doyuran Lezzetler</FlavorsLabel>
+        </section>
+
+        <SubFoodMenuArea>
+          {foodItemsNew.map((item, index) => {
+            return (
+              <FoodIconContainer key={index}>
+                <FoodButton>
+                  <img src={item.foodicon} alt="" />
+                  <FoodIconLabel>{item.foodiconlabel}</FoodIconLabel>
+                </FoodButton>
+              </FoodIconContainer>
+            );
+          })}
+        </SubFoodMenuArea>
+
+        <section className="foodproductscontainer">
+          {foodCardInfos.map((item, index) => {
+            return (
+              <div className="foodCard" key={index}>
+                <img src={item.foodImg} />
+                <div className="foodCardLabelContainer">
+                  <FoodCardNameLabel>{item.foodName}</FoodCardNameLabel>
+                  <FoodSpecsLabelContainer>
+                    <FoodCardSpecsLabel>{item.foodScore}</FoodCardSpecsLabel>{" "}
+                    <FoodCardSpecsLabel>{item.foodQuantity}</FoodCardSpecsLabel>{" "}
+                    <FoodCardCostLabel>{item.foodCoast}</FoodCardCostLabel>
+                  </FoodSpecsLabelContainer>
+                </div>
+              </div>
+            );
+          })}
+        </section>
+      </MiddleArea>
+
+      <footer className="restaurantinfocontainer">
+        <AllInfoAreaContainer>
+          <InfoMenuContainer>
+            <TechnologicFoodsContainer>
+              <img src="../../Assets/Iteration-2-aseets/footer/logo-footer.svg" />
+              {helpInfos.map((item, index) => {
+                return (
+                  <div>
+                    <img src={item.icon} />
+                    <Label>{item.text}</Label>
+                  </div>
+                );
+              })}
+            </TechnologicFoodsContainer>
+            <MenuInfoContainer>
+              <MenuTitleLabel>Sıccacık Menüler</MenuTitleLabel>
+              <div>
+                <p>Terminal Pizza</p>
+                <p>5 Kişilik Hackathlon Pizza</p>
+                <p>useEffect Tavuklu Pizza</p>
+                <p>Beyaz Console Frost</p>
+                <p>Testler Geçti Mutlu Burger</p>
+                <p>Position Absolute Acı Burger</p>
+              </div>
+            </MenuInfoContainer>
+          </InfoMenuContainer>
+
+          <InstaContainer>
+            <InstaLabel>Instagram</InstaLabel>
+            <InstaImgContainer>
+              {instaPhotos.map((item, index) => {
+                return <InstaImg src={item} key={index} />;
+              })}
+            </InstaImgContainer>
+          </InstaContainer>
+        </AllInfoAreaContainer>
+
+        <BorderLine />
+
+        <section className="lowestareacontainer">
+          <div>
+            <FontAwesomeIcon icon={faCircleUser} style={{ color: "white" }} />
+            <Label style={{ color: "white", marginLeft: "0.35rem" }}>
+              2023 Teknolojik Yemekler.
+            </Label>
+          </div>
+          <FontAwesomeIcon
+            icon={faTwitter}
+            className="fa-2x"
+            style={{ color: "#74C0FC" }}
+          />
+        </section>
+      </footer>
     </>
   );
 }

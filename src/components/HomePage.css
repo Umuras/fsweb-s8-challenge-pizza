@@ -1,5 +1,6 @@
 .firstcontainer {
   position: relative;
+  width: 100%;
 }
 
 .homeinfo {
@@ -46,4 +47,62 @@
   flex: 1;
   margin-left: 20rem;
   margin-right: 17rem;
+}
+
+.npmCardLabel {
+  color: #ce2829;
+}
+
+.foodmessengercardlabelcontainer {
+  margin-bottom: 2rem;
+}
+
+.hamburgercardlabelcontainer {
+  margin-bottom: 1rem;
+}
+
+.choosingfoodlabelarea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 7.5rem;
+}
+
+.foodproductscontainer {
+  display: flex;
+  height: 50vh;
+  margin-right: 16.5rem;
+  margin-left: 19.5rem;
+  column-gap: 1.5rem;
+}
+
+.foodCard {
+  background-color: white;
+  display: flex;
+  width: 35%;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.foodCardLabelContainer {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.restaurantinfocontainer {
+  height: 50vh;
+  background-color: black;
+}
+
+.lowestareacontainer {
+  display: flex;
+  justify-content: space-between;
+  width: 65%;
+  margin-left: 20rem;
+  align-items: center;
 }
