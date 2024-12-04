@@ -19,7 +19,7 @@ export default function PizzaAdditionalIngredients(props) {
             <div className={styles.additionalcheckbox} key={index}>
               <input
                 type="checkbox"
-                name={item.toLowerCase()}
+                name={item}
                 id={item.toLowerCase()}
                 className={styles.checkbox}
                 onChange={changeIngredients}

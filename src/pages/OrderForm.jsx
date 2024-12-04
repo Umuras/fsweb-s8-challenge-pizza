@@ -10,44 +10,17 @@ import PizzaSizePastrySelectionArea from "../components/PizzaSizePastrySelection
 import PizzaAdditionalIngredients from "../components/PizzaAdditionalIngredients";
 import PizzaInputArea from "../components/PizzaInputArea";
 import PizzaSumOfOrder from "../components/PizzaSumOfOrder";
-
-const ekMalzemeler = [
-  "Pepperoni",
-  "Domates",
-  "Biber",
-  "Sosis",
-  "Mısır",
-  "Sucuk",
-  "Kanada Jambonu",
-  "Salam",
-  "Ananas",
-  "Tavuk Izgara",
-  "Jalepeno",
-  "Kabak",
-  "Soğan",
-  "Sarımsak",
-];
-
-const initialFormData = {
-  name: "",
-  pizzasize: "",
-  ingredients: [],
-  pizzacost: 85.5,
-  ordernote: "",
-  pastrytype: "",
-  pizzaquantity: 1,
-  sumcost: 85.5,
-};
+import { ekMalzemeler } from "../dummyData";
 
 const errorMessages = {
   name: "En az 3 karakter girmelisin",
   ingredient: "En az 4 adet veya en fazla 10 adet malzeme seçmelisin",
 };
 
-export default function OrderForm() {
+export default function OrderForm(props) {
   const [isValid, setIsValid] = useState(false);
-  const [form, setForm] = useState(initialFormData);
   const [ingredients, setIngredients] = useState([]);
+  const { form, setForm } = props;
 
   let history = useHistory();
 

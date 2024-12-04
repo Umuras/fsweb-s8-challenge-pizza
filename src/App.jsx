@@ -6,8 +6,11 @@ import OrderForm from "./pages/OrderForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomePage from "./pages/HomePage";
 import Success from "./pages/Success";
+import { initialFormData } from "./dummyData";
 
 function App() {
+  const [form, setForm] = useState(initialFormData);
+
   return (
     <>
       <div>
@@ -16,10 +19,10 @@ function App() {
             <HomePage />
           </Route>
           <Route path="/orderform">
-            <OrderForm />
+            <OrderForm form={form} setForm={setForm} />
           </Route>
           <Route path="/success">
-            <Success />
+            <Success form={form} />
           </Route>
         </Switch>
       </div>
