@@ -107,7 +107,8 @@ export const foodCardInfos = [
 export const helpInfos = [
   {
     icon: "../../Assets/Iteration-2-aseets/footer/icons/icon-1.png",
-    text: "341 Londonderry Road, Istanbul Türkiye",
+    text: "341 Londonderry Road,",
+    text2: "Istanbul Türkiye",
   },
   {
     icon: "../../Assets/Iteration-2-aseets/footer/icons/icon-2.png",
