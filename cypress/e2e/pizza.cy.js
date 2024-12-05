@@ -21,7 +21,7 @@ describe("Select ingredients", () => {
     }
 
     for (let i = 0; i < 5; i++) {
-      let checkboxName = `[data-cy="ingredient-checkbox${i}"]:checked`;
+      let checkboxName = `[data-cy="ingredient-checkboxi${i}"]:checked`;
       cy.get(checkboxName).should("be.checked");
     }
   });
@@ -39,11 +39,11 @@ describe("Select ingredients", () => {
       }
 
       for (let i = 0; i < 5; i++) {
-        let checkboxName = `[data-cy="ingredient-checkbox${i}"]:checked`;
+        let checkboxName = `[data-cy="ingredient-checkboxi${i}"]:checked`;
         cy.get(checkboxName).should("be.checked");
       }
 
-      cy.get('[data-cy="largesize-radio"]').click();
+      cy.get('[data-cy="largesize-radio"]').click({ force: true });
       cy.get('[data-cy="pastry-select"]').select("Kalın Hamur");
       cy.get('[data-cy="order-button"]').should("not.disabled").click();
 

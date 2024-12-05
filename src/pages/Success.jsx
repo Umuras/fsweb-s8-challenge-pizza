@@ -1,4 +1,5 @@
 import logo from "../../Assets/Iteration-1-assets/logo.svg";
+import CommonFooter from "../components/CommonFooter";
 import "../components/Success.css";
 import { Label } from "reactstrap";
 import styled from "styled-components";
@@ -77,6 +78,8 @@ export default function Success(props) {
           </div>
         </section>
       </section>
+
+      <CommonFooter />
     </>
   );
 }

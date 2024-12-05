@@ -1,4 +1,5 @@
 import { Label, Form } from "reactstrap";
+import { NavLink } from "react-router-dom/cjs/react-router-dom";
 import styles from "../components/OrderFormStyle.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -11,6 +12,7 @@ import PizzaAdditionalIngredients from "../components/PizzaAdditionalIngredients
 import PizzaInputArea from "../components/PizzaInputArea";
 import PizzaSumOfOrder from "../components/PizzaSumOfOrder";
 import { ekMalzemeler } from "../dummyData";
+import CommonFooter from "../components/CommonFooter";
 
 const errorMessages = {
   name: "En az 3 karakter girmelisin",
@@ -98,6 +100,23 @@ export default function OrderForm(props) {
       <OrderFormHeader />
 
       <Form className={styles.pizzaform} onSubmit={handleSubmit}>
+        <div className={styles.navbar}>
+          <NavLink className={styles.navlink} to="/">
+            Anasayfa-
+          </NavLink>
+
+          <NavLink
+            className={
+              window.location.href.includes("/orderform")
+                ? styles.activepage
+                : styles.navlink
+            }
+            to="/orderform"
+          >
+            Sipariş Oluştur
+          </NavLink>
+        </div>
+
         <Label className={styles.labelPizza}>Position Absolute Acı Pizza</Label>
         <PizzaCostArea form={form} />
 
@@ -126,6 +145,7 @@ export default function OrderForm(props) {
           isValid={isValid}
         />
       </Form>
+      <CommonFooter />
     </>
   );
 }

@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const ExpandInput = styled(Input)`
   padding: 1rem 1rem;
+  background-color: #faf7f2;
 `;
 
 export default function PizzaInputArea(props) {

@@ -3,7 +3,6 @@ import { faCircleUser } from "@fortawesome/free-regular-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { helpInfos, instaPhotos } from "../dummyData";
 import styled from "styled-components";
-import "../components/HomePage.css";
 import {
   Button,
   Label,

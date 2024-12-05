@@ -2,25 +2,32 @@
   display: flex;
   flex-direction: column;
   background-color: #ce2829;
-  margin-bottom: 2rem;
+  margin-bottom: 15rem;
   align-items: center;
   justify-content: space-between;
-  row-gap: 8rem;
+  position: relative;
+}
+
+.bannerpizza {
+  position: absolute;
+  z-index: -1;
+  margin-top: 5rem;
 }
 
 .title {
   margin-top: 5rem;
+  margin-bottom: 2rem;
 }
 
 .navbar {
   width: 38rem;
   margin-bottom: 2rem;
   display: flex;
-  color: white;
+  color: green;
 }
 
 .navlink {
-  color: white;
+  color: green;
   text-decoration: none;
 }
 
@@ -28,6 +35,7 @@
   width: 32%;
   margin: 0 auto;
   height: 90rem;
+  margin-bottom: 10rem;
 }
 
 .labelPizza {
@@ -70,24 +78,79 @@
 
 .selectPizzaSize {
   font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .pizzasizeinput {
-  margin-right: 1rem;
+  position: absolute;
+  top: 0;
+  left: 1;
+  right: 1;
+  height: 60px;
+  width: 60px;
+  background-color: #faf7f2;
+  border-radius: 50%;
 }
 
 .sizeArea {
-  display: flex;
-  flex-direction: column;
+  width: 80%;
 }
+
+.allradiobuttons {
+  display: block;
+  position: relative;
+  margin-right: 4rem;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.allradiobuttons input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* On mouse-over, add a grey background color */
+.allradiobuttons:hover input ~ .pizzasizeinput {
+  background-color: #ddd9d5;
+}
+
+/* When the radio button is checked, add a blue background */
+.allradiobuttons input:checked ~ .pizzasizeinput {
+  background-color: #feddc1;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.pizzasizeinput:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.allradiobuttons input:checked ~ .pizzasizeinput:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
 
 .selectpastry {
   display: flex;
   flex-direction: column;
-  margin-right: 14rem;
+  width: 100%;
 }
 .pastrylabel {
+  margin: 0 0 0 0;
   font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .additionalingredients {
@@ -106,11 +169,20 @@
 .additionalcheckbox {
   display: block;
   width: 32%;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .checboxlabel {
   font-weight: bold;
   color: gray;
+  margin-left: 1rem;
 }
 
 .ordernotearea {
@@ -127,8 +199,61 @@
   font-weight: bold;
 }
 
+.additionalcheckbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
 .checkbox {
-  margin-right: 1rem;
+  margin-right: 2rem;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  margin-right: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 40px;
+  width: 40px;
+  background-color: #faf7f2;
+  border-radius: 0.5rem;
+}
+
+.additionalcheckbox:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+.additionalcheckbox input:checked ~ .checkmark {
+  background-color: #fdc913;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.additionalcheckbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.additionalcheckbox .checkmark:after {
+  left: 17px;
+  top: 12px;
+  width: 8px;
+  height: 15px;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .usernamelabel {
@@ -174,6 +299,7 @@
 .allcostarea {
   display: flex;
   flex-direction: column;
+  background-color: #faf7f2;
 }
 
 .username {
@@ -189,5 +315,9 @@
 .activepage {
   font-weight: bold;
   text-decoration: none;
-  color: white;
+  color: red;
+}
+
+.topcolorarea {
+  background-color: #faf7f2;
 }

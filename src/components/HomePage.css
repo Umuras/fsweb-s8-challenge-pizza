@@ -110,3 +110,13 @@
 .fonticon {
   color: white;
 }
+
+.orderbutton {
+  font-family: "Roboto Condensed", serif;
+  border-radius: 2rem;
+  background-color: #faf7f2;
+  color: red;
+  padding: 1rem 2rem 1rem 2rem;
+  font-weight: bold;
+  border: none;
+}

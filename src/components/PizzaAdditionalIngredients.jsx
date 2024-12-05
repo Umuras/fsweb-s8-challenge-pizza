@@ -16,15 +16,19 @@ export default function PizzaAdditionalIngredients(props) {
       <div className={styles.alladditionalcheckboxes}>
         {ekMalzemeler.map((item, index) => {
           return (
-            <div className={styles.additionalcheckbox} key={index}>
+            <Label className={styles.additionalcheckbox} key={index}>
               <input
                 type="checkbox"
                 name={item}
                 id={item.toLowerCase()}
                 className={styles.checkbox}
                 onChange={changeIngredients}
-                data-cy={"ingredient-checkbox" + index}
+                data-cy={"ingredient-checkboxi" + index}
               />
+              <span
+                className={styles.checkmark}
+                data-cy={"ingredient-checkbox" + index}
+              ></span>
 
               <Label
                 className={styles.checboxlabel}
@@ -32,7 +36,7 @@ export default function PizzaAdditionalIngredients(props) {
               >
                 {item}
               </Label>
-            </div>
+            </Label>
           );
         })}
       </div>

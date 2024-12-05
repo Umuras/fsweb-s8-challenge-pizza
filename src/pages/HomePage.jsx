@@ -8,6 +8,7 @@ import {
   CardTitle,
   CardText,
 } from "reactstrap";
+
 import "../components/HomePage.css";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -78,16 +79,6 @@ const PizzaCardText = styled(CardText)`
   font-size: 1.18rem;
 `;
 
-const OrderButton = styled(Button)`
-  font-family: "Roboto Condensed", serif;
-  border-radius: 2rem;
-  background-color: #faf7f2;
-  color: red;
-  padding: 1rem 2rem 1rem 2rem;
-  font-weight: bold;
-  border: none;
-`;
-
 const HamburgerCard = styled(Card)`
   border-radius: 1rem;
 `;
@@ -150,7 +141,7 @@ const SubFoodMenuArea = styled.nav`
 
 const FoodButton = styled(Button)`
   border-radius: 2rem;
-  background-color: aliceblue;
+  background-color: white;
   color: black;
   border: none;
   padding: 1.25rem 3rem 1.25rem 3rem;
@@ -194,7 +185,7 @@ export default function HomePage() {
 
   let history = useHistory();
 
-  function handleChange(event) {
+  function handleClick(event) {
     history.push("/orderform");
   }
 
@@ -212,7 +203,7 @@ export default function HomePage() {
           <Button
             type="button"
             className="homePageButton"
-            onClick={handleChange}
+            onClick={handleClick}
           >
             ACIKTIM
           </Button>
@@ -238,7 +229,9 @@ export default function HomePage() {
               <PizzaCardTitleLabel tag="h1">Özel</PizzaCardTitleLabel>
               <PizzaCardTitleLabel tag="h1">Lezzetus</PizzaCardTitleLabel>
               <PizzaCardText>Position:Absolute Acı Burger</PizzaCardText>
-              <OrderButton>SİPARİŞ VER</OrderButton>
+              <Button className="orderbutton" onClick={handleClick}>
+                SİPARİŞ VER
+              </Button>
             </CardImageContentArea>
           </PizzaCard>
 
@@ -255,7 +248,9 @@ export default function HomePage() {
                   </HamburgerCardTitleLabel>
                 </div>
 
-                <OrderButton>SİPARİŞ VER</OrderButton>
+                <Button className="orderbutton" onClick={handleClick}>
+                  SİPARİŞ VER
+                </Button>
               </CardImageContentArea>
             </HamburgerCard>
 
@@ -273,7 +268,9 @@ export default function HomePage() {
                     npm gibi kurye
                   </FoodCardMessengerTitleLabel>
                 </div>
-                <OrderButton>SİPARİŞ VER</OrderButton>
+                <Button className="orderbutton" onClick={handleClick}>
+                  SİPARİŞ VER
+                </Button>
               </CardImageContentArea>
             </FoodMessengerCardArea>
           </WrapperCard>
