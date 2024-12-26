@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-regular-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { helpInfos, instaPhotos } from "../dummyData";
+import technologicFoodText from "../../Assets/Iteration-2-aseets/footer/logo-footer.svg";
 import styled from "styled-components";
 import {
   Button,
@@ -164,7 +165,7 @@ export default function CommonFooter() {
       <SubFooter>
         <AllInfoAreaContainer>
           <TechnologicFoodsContainer>
-            <img src="../../Assets/Iteration-2-aseets/footer/logo-footer.svg" />
+            <img src={technologicFoodText} />
             <ContactContainer>
               {helpInfos.map((item, index) => {
                 return (
