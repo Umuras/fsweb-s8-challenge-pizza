@@ -1,3 +1,22 @@
+import foodicon1 from "../Assets/Iteration-2-aseets/icons/1.svg";
+import foodicon2 from "../Assets/Iteration-2-aseets/icons/2.svg";
+import foodicon3 from "../Assets/Iteration-2-aseets/icons/3.svg";
+import foodicon4 from "../Assets/Iteration-2-aseets/icons/4.svg";
+import foodicon5 from "../Assets/Iteration-2-aseets/icons/5.svg";
+import foodicon6 from "../Assets/Iteration-2-aseets/icons/6.svg";
+import foodcard1 from "../Assets/Iteration-2-aseets/pictures/food-1.png";
+import foodcard2 from "../Assets/Iteration-2-aseets/pictures/food-2.png";
+import foodcard3 from "../Assets/Iteration-2-aseets/pictures/food-3.png";
+import locationicon from "../Assets/Iteration-2-aseets/footer/icons/icon-1.png";
+import epostaicon from "../Assets/Iteration-2-aseets/footer/icons/icon-2.png";
+import phoneicon from "../Assets/Iteration-2-aseets/footer/icons/icon-3.png";
+import instaicon1 from "../Assets/Iteration-2-aseets/footer/insta/li-0.png";
+import instaicon2 from "../Assets/Iteration-2-aseets/footer/insta/li-1.png";
+import instaicon3 from "../Assets/Iteration-2-aseets/footer/insta/li-2.png";
+import instaicon4 from "../Assets/Iteration-2-aseets/footer/insta/li-3.png";
+import instaicon5 from "../Assets/Iteration-2-aseets/footer/insta/li-4.png";
+import instaicon6 from "../Assets/Iteration-2-aseets/footer/insta/li-5.png";
+
 export const ekMalzemeler = [
   "Pepperoni",
   "Domates",
@@ -28,75 +47,75 @@ export const initialFormData = {
 
 export const foodItems = [
   {
-    foodicon: "../../Assets/Iteration-2-aseets/icons/1.svg",
+    foodicon: foodicon1,
     foodiconlabel: "YENİKORE!",
   },
   {
-    foodicon: "../../Assets/Iteration-2-aseets/icons/2.svg",
+    foodicon: foodicon2,
     foodiconlabel: "Pizza",
   },
   {
-    foodicon: "../../Assets/Iteration-2-aseets/icons/3.svg",
+    foodicon: foodicon3,
     foodiconlabel: "Burger",
   },
   {
-    foodicon: "../../Assets/Iteration-2-aseets/icons/4.svg",
+    foodicon: foodicon4,
     foodiconlabel: "Kızartmalar",
   },
   {
-    foodicon: "../../Assets/Iteration-2-aseets/icons/5.svg",
+    foodicon: foodicon5,
     foodiconlabel: "Fast food",
   },
   {
-    foodicon: "../../Assets/Iteration-2-aseets/icons/6.svg",
+    foodicon: foodicon6,
     foodiconlabel: "Gazlı İçecek",
   },
 ];
 
 export const foodItemsNew = [
   {
-    foodicon: "../../Assets/Iteration-2-aseets/icons/1.svg",
+    foodicon: foodicon1,
     foodiconlabel: "Ramen",
   },
   {
-    foodicon: "../../Assets/Iteration-2-aseets/icons/2.svg",
+    foodicon: foodicon2,
     foodiconlabel: "Pizza",
   },
   {
-    foodicon: "../../Assets/Iteration-2-aseets/icons/3.svg",
+    foodicon: foodicon3,
     foodiconlabel: "Burger",
   },
   {
-    foodicon: "../../Assets/Iteration-2-aseets/icons/4.svg",
+    foodicon: foodicon4,
     foodiconlabel: "French fries",
   },
   {
-    foodicon: "../../Assets/Iteration-2-aseets/icons/5.svg",
+    foodicon: foodicon5,
     foodiconlabel: "Fast food",
   },
   {
-    foodicon: "../../Assets/Iteration-2-aseets/icons/6.svg",
+    foodicon: foodicon6,
     foodiconlabel: "Soft drinks",
   },
 ];
 
 export const foodCardInfos = [
   {
-    foodImg: "../../Assets/Iteration-2-aseets/pictures/food-1.png",
+    foodImg: foodcard1,
     foodName: "Terminal Pizza",
     foodScore: "4.9",
     foodQuantity: "(200)",
     foodCoast: "60₺",
   },
   {
-    foodImg: "../../Assets/Iteration-2-aseets/pictures/food-2.png",
+    foodImg: foodcard2,
     foodName: "Position Absolute Acı Pizza",
     foodScore: "4.9",
     foodQuantity: "(928)",
     foodCoast: "85₺",
   },
   {
-    foodImg: "../../Assets/Iteration-2-aseets/pictures/food-3.png",
+    foodImg: foodcard3,
     foodName: "useEffect Tavuklu Burger",
     foodScore: "4.9",
     foodQuantity: "(462)",
@@ -106,25 +125,25 @@ export const foodCardInfos = [
 
 export const helpInfos = [
   {
-    icon: "../../Assets/Iteration-2-aseets/footer/icons/icon-1.png",
+    icon: locationicon,
     text: "341 Londonderry Road,",
     text2: "Istanbul Türkiye",
   },
   {
-    icon: "../../Assets/Iteration-2-aseets/footer/icons/icon-2.png",
+    icon: epostaicon,
     text: "aciktim@teknolojikyemekler.com",
   },
   {
-    icon: "../../Assets/Iteration-2-aseets/footer/icons/icon-3.png",
+    icon: phoneicon,
     text: "+90 216 123 45 67",
   },
 ];
 
 export const instaPhotos = [
-  "../../Assets/Iteration-2-aseets/footer/insta/li-0.png",
-  "../../Assets/Iteration-2-aseets/footer/insta/li-1.png",
-  "../../Assets/Iteration-2-aseets/footer/insta/li-2.png",
-  "../../Assets/Iteration-2-aseets/footer/insta/li-3.png",
-  "../../Assets/Iteration-2-aseets/footer/insta/li-4.png",
-  "../../Assets/Iteration-2-aseets/footer/insta/li-5.png",
+  instaicon1,
+  instaicon2,
+  instaicon3,
+  instaicon4,
+  instaicon5,
+  instaicon6,
 ];
